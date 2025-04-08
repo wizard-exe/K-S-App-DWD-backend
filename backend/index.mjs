@@ -1,16 +1,16 @@
-const express = require('express');
-const fetch = require('node-fetch');
-const cors = require('cors');
+// server.mjs
+import express from 'express';
+import cors from 'cors';
 
 const app = express();
 const PORT = 4000;
 
-app.use(cors()); // Erlaube alle Origins, oder passe es für Sicherheit an
+app.use(cors());
 
-// Proxy-Endpunkt für PVGIS
 app.get('/api/pvgis', async (req, res) => {
   try {
     const { lat, lon, endYear, database } = req.query;
+
     if (!lat || !lon || !endYear || !database) {
       return res.status(400).send("Missing parameters");
     }
